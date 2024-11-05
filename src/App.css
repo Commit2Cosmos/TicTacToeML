@@ -1,82 +1,95 @@
+/*! typography, forms */
 @tailwind base;
+/*! buttons, cards, navigation bars */
 @tailwind components;
+/*! single-purpose classes */
 @tailwind utilities;
 
 
-.logo.vite:hover {
-  filter: drop-shadow(0 0 2em #747bff);
+@layer base {
+    :root {
+      font-family: Inter, Avenir, Helvetica, Arial, sans-serif;
+    
+      color: #000;
+      background-color: #fff;
+    }
 }
 
-.logo.react:hover {
-  filter: drop-shadow(0 0 2em #61dafb);
-}
-:root {
-  font-family: Inter, Avenir, Helvetica, Arial, sans-serif;
-  font-size: 16px;
-  line-height: 24px;
-  font-weight: 400;
 
-  color: #0f0f0f;
-  background-color: #f6f6f6;
-
-  font-synthesis: none;
-  text-rendering: optimizeLegibility;
-  -webkit-font-smoothing: antialiased;
-  -moz-osx-font-smoothing: grayscale;
-  -webkit-text-size-adjust: 100%;
+@layer components {
+    @media (prefers-color-scheme: dark) {
+        :root {
+            color: #fff;
+            background-color: #000;
+        }
+    }
 }
 
-h1 {
-  text-align: center;
-}
 
-input,
-button {
-  border-radius: 8px;
-  border: 1px solid transparent;
-  padding: 0.6em 1.2em;
-  font-size: 1em;
-  font-weight: 500;
-  font-family: inherit;
-  color: #0f0f0f;
-  background-color: #ffffff;
-  transition: border-color 0.25s;
-  box-shadow: 0 2px 2px rgba(0, 0, 0, 0.2);
-}
+@layer utilities {
+    .outline-all, .outline-all > * {
+        @apply outline outline-orange-600;
+    }
 
-button {
-  cursor: pointer;
-}
+    .squares-container {
+        display: grid;
+        grid-template-columns: repeat(3, 1fr);
+        grid-template-rows: repeat(3, 1fr);
+        gap: 0;
+    }
 
-button:hover {
-  border-color: #396cd8;
-}
-button:active {
-  border-color: #396cd8;
-  background-color: #e8e8e8;
-}
 
-input,
-button {
-  outline: none;
-}
+    .square {
+        position: relative;
+        display: flex;
+        align-items: center;
+        justify-content: center;
+        color: #fff;
+        padding: 1rem;
+    }
 
-@media (prefers-color-scheme: dark) {
-  :root {
-    color: #f6f6f6;
-    background-color: #2f2f2f;
-  }
+    .s-t {
+        border-bottom: 2px solid;
+    }
 
-  a:hover {
-    color: #24c8db;
-  }
+    .s-b {
+        border-top: 2px solid;
+    }
 
-  input,
-  button {
-    color: #ffffff;
-    background-color: #0f0f0f98;
-  }
-  button:active {
-    background-color: #0f0f0f69;
-  }
+    .s-l {
+        border-right: 2px solid;
+    }
+
+    .s-r {
+        border-left: 2px solid;
+    }
+
+    .O {
+        @apply w-3/4 h-3/4 bg-white rounded-full
+        flex items-center justify-center;
+    }
+
+    .O::before {
+        @apply w-2/3 h-2/3 bg-black rounded-full;
+        content: "";
+    }
+
+    .X {
+        @apply w-full h-full relative;
+        /* flex items-center justify-center; */
+    }
+
+    .X::before,
+    .X::after {
+        @apply absolute top-1/2 left-1/2 w-[10%] h-[90%] bg-white;
+        content: "";
+    }
+
+    .X::before {
+        transform: translate(-50%, -50%) rotate(45deg);
+    }
+
+    .X::after {
+        transform: translate(-50%, -50%) rotate(-45deg);
+    }
 }
